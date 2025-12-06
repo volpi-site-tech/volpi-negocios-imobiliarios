@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Penthouse Moderna — Volpi</title><link rel="stylesheet" href="../../styles.css"/></head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../">
+      <img src="../../assets/logo.png" class="logo" alt="Volpi"/>
+      <div class="brand-text"><div class="brand-title">Volpi</div><div class="brand-sub">Negócios Imobiliários</div></div>
+    </a>
+    <nav class="nav">
+      <a class="nav-link" href="../../#catalogo">Catálogo</a>
+      <a class="nav-link" href="../../#imoveis">Imóveis</a>
+      <a class="nav-link" href="../../sobre/index.html">Sobre</a>
+      <a class="nav-link" href="../../#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+<main class="container property">
+  <h1>Penthouse Moderna</h1>
+  <p class="muted">Itaim Bibi, São Paulo - SP • 430 m² • 4 suítes • 4 vagas</p>
+  <div class="property-grid">
+    <div class="gallery">
+      <div class="main-img"><img id="main-img" src="../../images/gallery_1.jpg" alt=""></div>
+      <div id="thumbs" class="thumbs"></div>
+    </div>
+    <div class="details">
+      <h3>Características</h3><ul><li>Rooftop</li><li>Elevador privativo</li><li>Automação</li></ul>
+      <h3>Infraestrutura</h3><ul><li>Piscina aquecida</li><li>Spa</li><li>Área gourmet</li></ul>
+      <h3>Descrição</h3><p>Penthouse exclusiva com rooftop e acabamentos sob medida.</p>
+    </div>
+  </div>
+  <a class="btn btn-primary" href="../../#contato">Entrar em contato</a>
+</main>
+<script>
+fetch('../../data.json').then(r=>r.json()).then(function(data){
+  var slug="imovel-2";
+  var prop = data.properties.find(p=>p.slug===slug);
+  if(!prop) return;
+  var thumbs = document.getElementById('thumbs');
+  var main = document.getElementById('main-img');
+  prop.images.forEach(function(src,i){
+    var img = document.createElement('img');
+    img.src = src;
+    img.alt = prop.name + ' foto ' + (i+1);
+    img.className = 'thumb';
+    img.addEventListener('click', function(){ main.src = src; });
+    thumbs.appendChild(img);
+  });
+});
+</script>
+</body>
+</html>
